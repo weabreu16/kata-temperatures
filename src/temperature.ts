@@ -7,15 +7,15 @@ export enum TemperatureScale {
 
 function round(num: number): number {
   return +(Math.round(+(num + "e+2")) + "e-2");
-}
+};
 
 export class Temperature {
   constructor(
     public value: number,
     public readonly Scale: TemperatureScale
   ) {
-    if (value === 0 && Scale === TemperatureScale.Kelvin)
-      throw new Error("Kelvin can't be zero");
+    if (value <= 0 && Scale === TemperatureScale.Kelvin)
+      throw new Error("Kelvin can't be zero or less");
   }
 
   Add(other: Temperature): Temperature {

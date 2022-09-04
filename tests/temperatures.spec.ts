@@ -61,9 +61,13 @@ describe("Temperature", () => {
   });
 
   describe("Kelvin", () => {
-    it("should throw error with 'Kelvin can't be zero' if receive 0K", () => {
-      expect(() => { new Temperature(0, TemperatureScale.Kelvin) }).toThrowError("Kelvin can't be zero");
+    it("should throw error with 'Kelvin can't be zero or less' if receive 0K", () => {
+      expect(() => { new Temperature(0, TemperatureScale.Kelvin) }).toThrowError("Kelvin can't be zero or less");
     });
+	
+	  it("should throw error with 'Kelvin can't be zero or less' if receive -5K", () => {
+		  expect(() => { new Temperature(-5, TemperatureScale.Kelvin) }).toThrowError("Kelvin can't be zero or less");
+	  });
   });
 
   describe("Add", () => {
@@ -111,10 +115,10 @@ describe("Temperature", () => {
       expect(tempB.Substract(tempA)).toEqual({ value: 9, Scale: TemperatureScale.Fahrenheit });
     });
 
-    it("should return -273.15K if substract 1K and 1C", () => {
-      const tempA = new Temperature(1, TemperatureScale.Celsius);
-      const tempB = new Temperature(1, TemperatureScale.Kelvin);
-      expect(tempB.Substract(tempA)).toEqual({ value: -273.15, Scale: TemperatureScale.Kelvin });
+    it("should return 11.85K if substract 300K and 15C", () => {
+      const tempA = new Temperature(15, TemperatureScale.Celsius);
+      const tempB = new Temperature(300, TemperatureScale.Kelvin);
+      expect(tempB.Substract(tempA)).toEqual({ value: 11.85, Scale: TemperatureScale.Kelvin });
     });
   });
 

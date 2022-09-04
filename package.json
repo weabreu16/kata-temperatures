@@ -2,8 +2,10 @@
   "name": "kata-temperatures",
   "version": "1.0.0",
   "description": "This is a project with the goal to resolve a Kata using TDD.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "npx tsc",
     "test": "jest"
   },
   "repository": {
